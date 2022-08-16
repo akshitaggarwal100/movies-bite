@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MoviesBite/static/css/main.1fd5723f.css",
+    "main.js": "/MoviesBite/static/js/main.397c28e8.js",
+    "index.html": "/MoviesBite/index.html",
+    "main.1fd5723f.css.map": "/MoviesBite/static/css/main.1fd5723f.css.map",
+    "main.397c28e8.js.map": "/MoviesBite/static/js/main.397c28e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1fd5723f.css",
+    "static/js/main.397c28e8.js"
+  ]
+}
