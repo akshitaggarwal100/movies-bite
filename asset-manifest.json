@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/MoviesBite/static/css/main.957cb81c.css",
-    "main.js": "/MoviesBite/static/js/main.78a8a670.js",
-    "index.html": "/MoviesBite/index.html",
-    "main.957cb81c.css.map": "/MoviesBite/static/css/main.957cb81c.css.map",
-    "main.78a8a670.js.map": "/MoviesBite/static/js/main.78a8a670.js.map"
+    "main.css": "/movies-bite/static/css/main.957cb81c.css",
+    "main.js": "/movies-bite/static/js/main.78a8a670.js",
+    "index.html": "/movies-bite/index.html",
+    "main.957cb81c.css.map": "/movies-bite/static/css/main.957cb81c.css.map",
+    "main.78a8a670.js.map": "/movies-bite/static/js/main.78a8a670.js.map"
   },
   "entrypoints": [
     "static/css/main.957cb81c.css",
