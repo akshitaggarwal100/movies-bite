@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Trending from './Pages/Trending';
+import Movies from './Pages/Movies'
+import Series from './Pages/Series';
+import Test from './Pages/Test';
 
 function App() {
+
+  // https://image.tmdb.org/t/p/w300
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Trending />} />
+        <Route path='/movies' element={<Movies />} />
+        <Route path='/series' element={<Series />} />
+        {/* developement */}
+        <Route path='/test' element={<Test />} />
+        {/* developement */}
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;

@@ -1,0 +1,51 @@
+.timeWindow {
+    margin: auto;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 20rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 2px solid #d3d3d3;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.time:nth-of-type(1) {
+    border-right: 1px solid #d3d3d3;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.time:nth-of-type(2) {
+    border-left: 1px solid #d3d3d3;
+    border-radius: 0 1rem 1rem 0;
+}
+
+.active {
+    background-color: #3c6e71;
+    color: white;
+}
+
+.notActive {
+    background-color: #d3d3d3;
+}
+
+.disable {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .timeWindow {
+        width: 15rem;
+    }
+}

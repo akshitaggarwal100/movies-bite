@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+.header_logo {
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    width: calc(100vw - (100vw - 100%));
+    height: 5rem;
+    /* background-color: #212224; */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.64);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.2px);
+    -webkit-backdrop-filter: blur(13.2px);
+}
+
+.logo {
+    width: 3rem;
+    height: 3rem;
+    padding-right: 0.3rem;
+}
+
+.logoText {
+    height: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logoText h1 {
+    font-size: 1.7rem;
+    background: linear-gradient(to right, #9600cc 0%, #ff007e 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logoText h2 {
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.2rem;
+}
+
+.searchBox {
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.searchBar {
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+    line-height: 1.3rem;
+    font-size: 1.1rem;
+    padding-left: 0.5rem;
+    margin-right: 0.7rem;
+    height: 2.5rem;
+    width: 25rem;
+}
+
+.searchIcon {
+    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #533be1;
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.heading {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 3rem;
+    font-weight: 500;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .searchBox {
+        margin-top: 6rem;
+    }
+
+    .searchBar {
+        width: 20rem;
+    }
+
+    .heading {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .searchBar {
+        width: 15rem;
+    }
+}
