@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import Trending from './Pages/Trending';
 import Movies from './Pages/Movies'
 import Series from './Pages/Series';
@@ -11,7 +11,7 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Trending />} />
         <Route path='/movies' element={<Movies />} />
@@ -20,7 +20,7 @@ function App() {
         <Route path='/test' element={<Test />} />
         {/* developement */}
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
