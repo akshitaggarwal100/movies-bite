@@ -1,22 +1,26 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Libre Franklin', sans-serif;
-}
-
-.header_logo {
+.headerLogo {
     cursor: pointer;
     position: fixed;
     top: 0;
     width: calc(100vw - (100vw - 100%));
     height: 5rem;
     /* background-color: #212224; */
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+}
 
+.header_lm {
+    color: black;
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.2px);
+    -webkit-backdrop-filter: blur(13.2px);
+}
+
+.header_dm {
+    color: white;
     background: rgba(0, 0, 0, 0.64);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(13.2px);
@@ -83,6 +87,13 @@
     margin-top: 1.5rem;
     font-size: 3rem;
     font-weight: 500;
+}
+
+.heading_lm {
+    color: black;
+}
+
+.heading_dm {
     color: white;
 }
 

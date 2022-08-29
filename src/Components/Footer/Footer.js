@@ -7,19 +7,19 @@ import { HiFire } from 'react-icons/hi'
 
 function Footer(props) {
     return (
-        <div className='footerBox'>
+        <div className= {`footerBox ${props.mode === 'dark' ? 'footerBox_dm' : 'footerBox_lm'}`}>
             <div className='footerLinks'>
-                <Link className={props.active === 'trending' ? 'link activeL' : 'link notActiveL'} to='/'>
+                <Link className={`link ${props.active === 'trending' ? props.mode === 'dark' ? 'activeL_dm' : 'activeL_lm' : props.mode === 'dark' ? 'notActiveL_dm' : 'notActiveL_lm'}`} to='/'>
                     <HiFire className='footerIcon' />
                     <div>TRENDING</div>
                 </Link>
 
-                <Link className={props.active === 'movies' ? 'link activeL' : 'link notActiveL'} to='/movies'>
+                <Link className={`link ${props.active === 'movies' ? props.mode === 'dark' ? 'activeL_dm' : 'activeL_lm' : props.mode === 'dark' ? 'notActiveL_dm' : 'notActiveL_lm'}`} to='/movies'>
                     <BiMovie className='footerIcon' />
                     <div>MOVIES</div>
                 </Link>
 
-                <Link className={props.active === 'series' ? 'link activeL' : 'link notActiveL'} to='/series'>
+                <Link className={`link ${props.active === 'series' ? props.mode === 'dark' ? 'activeL_dm' : 'activeL_lm' : props.mode === 'dark' ? 'notActiveL_dm' : 'notActiveL_lm'}`} to='/series'>
                     <MdOutlineLocalMovies className='footerIcon' />
                     <div>SERIES</div>
                 </Link>

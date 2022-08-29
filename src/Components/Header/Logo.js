@@ -2,9 +2,9 @@ import React from 'react'
 import { BiMoviePlay } from 'react-icons/bi';
 import './Header.css'
 
-function Logo() {
+function Logo({ mode }) {
     return (
-        <div onClick={() => window.scroll({ top: 0, left: 0, behavior: 'smooth' })} className='header_logo'>
+        <div onClick={() => window.scroll({ top: 0, left: 0, behavior: 'smooth' })} className={`headerLogo ${mode === 'dark' ? 'header_dm' : 'header_lm'}`}>
             <BiMoviePlay className='logo' />
             <div className='logoText'>
                 <h1>Movies Bite</h1>

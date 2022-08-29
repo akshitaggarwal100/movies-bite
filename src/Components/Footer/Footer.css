@@ -14,6 +14,20 @@
     -webkit-backdrop-filter: blur(13.2px);
 }
 
+.footerBox_lm {
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.2px);
+    -webkit-backdrop-filter: blur(13.2px);
+}
+
+.footerBox_dm {
+    background: rgba(0, 0, 0, 0.64);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.2px);
+    -webkit-backdrop-filter: blur(13.2px);
+}
+
 .footerLinks {
     width: 50%;
     display: flex;
@@ -34,12 +48,20 @@
     text-decoration: none;
 }
 
-.activeL {
+.activeL_dm {
+    color: #66b2ff;
+}
+
+.notActiveL_dm {
+    color: #f1faee;
+}
+
+.activeL_lm {
     color: #533be1;
 }
 
-.notActiveL {
-    color: #f1faee;
+.notActiveL_lm {
+    color: #212224;
 }
 
 .link div {

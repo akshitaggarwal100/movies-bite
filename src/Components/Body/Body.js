@@ -16,7 +16,7 @@ function Body(props) {
         <div className='contentBox'>
             <div className='cards'>
                 {props.content.map((media) => {
-                    return <Card key={media.id} title={media.title || media.name} poster={media.poster_path} date={media.release_date || media.first_air_date} type={props.heading === 'TRENDING' || 'SEARCH RESULTS' ? media.media_type === 'tv' ? 'TV Series' : 'movie' : mediaType} />
+                    return <Card mode={props.mode} key={media.id} title={media.title || media.name} poster={media.poster_path} date={media.release_date || media.first_air_date} type={props.heading === 'TRENDING' || props.heading === 'SEARCH RESULTS' ? media.media_type === 'tv' ? 'TV Series' : 'movie' : mediaType} />
                 })}
             </div>
         </div>

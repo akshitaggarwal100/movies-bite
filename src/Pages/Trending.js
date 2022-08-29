@@ -6,7 +6,7 @@ import { useEffect, useReducer } from 'react'
 import './Pages.css'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-function Trending() {
+function Trending(props) {
 
     const initialState = {
         operation: 'trending',
@@ -60,17 +60,18 @@ function Trending() {
 
     return (
         <>
-            <Header heading={state.heading} onSearch={onSearch} />
-            <div className={state.operation === 'trending' ? 'timeWindow' : 'disable'}>
-                <div onClick={() => dispatch({ type: 'setTimeWindow', payload: 'day' })} className={state.timeWindow === 'day' ? 'time active' : 'time notActive'}>Day</div>
-                <div onClick={() => dispatch({ type: 'setTimeWindow', payload: 'week' })} className={state.timeWindow === 'week' ? 'time active' : 'time notActive'}>Week</div>
+            <Header heading={state.heading} onSearch={onSearch} mode={props.mode} />
+
+            <div className={`timeWindow ${state.operation === 'trending' ? props.mode === 'dark' ? 'timeWindow_dm' : 'timeWindow_lm' : 'disable'}`}>
+                <div onClick={() => dispatch({ type: 'setTimeWindow', payload: 'day' })} className={`time ${state.timeWindow === 'day' ? props.mode === 'dark' ? 'activeT_dm' : 'activeT_lm' : props.mode === 'dark' ? 'notActiveT_dm' : 'notActiveT_lm'}`}>Day</div>
+                <div onClick={() => dispatch({ type: 'setTimeWindow', payload: 'week' })} className={`time ${state.timeWindow === 'week' ? props.mode === 'dark' ? 'activeT_dm' : 'activeT_lm' : props.mode === 'dark' ? 'notActiveT_dm' : 'notActiveT_lm'}`}>Week</div>
             </div>
 
             <InfiniteScroll next={() => dispatch({ type: "loadMore" })} dataLength={state.trending.length} hasMore={true}>
-                <Body heading={state.heading} content={state.trending} />
+                <Body heading={state.heading} content={state.trending} mode={props.mode} />
             </InfiniteScroll>
 
-            <Footer active='trending' />
+            <Footer active='trending' mode={props.mode} />
         </>
     )
 }

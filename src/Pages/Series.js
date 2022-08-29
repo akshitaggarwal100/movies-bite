@@ -6,63 +6,89 @@ import { useEffect, useReducer } from 'react'
 import './Pages.css'
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function Series() {
-    const initialState = {
-        operation: 'series',
-        page: 1,
-        genres: [],
-        series: [],
-        query: '',
-        heading: 'SERIES'
-    }
-
-    function reducer(state, action) {
-        switch (action.type) {
-            case 'loadMore':
-                return { ...state, page: state.page + 1 }
-
-            case 'setSeries':
-                if (state.page > 1) {
-                    return { ...state, series: [...state.series, ...action.payload] }
-                }
-                return { ...state, series: action.payload }
-
-            case 'search':
-                return { ...state, operation: 'search', query: action.payload, heading: 'SEARCH RESULTS', page: 1 }
+function Series(props) {
+        const initialState = {
+            operation: 'series',
+            page: 1,
+            genres: [],
+            genreSelected: [],
+            series: [],
+            query: '',
+            heading: 'SERIES'
         }
-    }
 
-    const [state, dispatch] = useReducer(reducer, initialState)
+        function reducer(state, action) {
+            switch (action.type) {
+                case 'setGenre':
+                    return { ...state, genres: action.payload }
 
-    useEffect(() => {
-        if (state.operation === 'series') {
-            fetch(`https://api.themoviedb.org/3/discover/tv?api_key=5ef2e60d6b66a89510434011a82a5020&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${state.page}&with_genres=${state.genres}`)
+                case 'selectGenre':
+                    return { ...state, genres: state.genres.filter(genre => genre.name !== action.payload.name), genreSelected: [...state.genreSelected, action.payload] }
+
+                case 'removeGenre':
+                    return { ...state, genres: [...state.genres, action.payload], genreSelected: state.genreSelected.filter(genre => genre.name !== action.payload.name) }
+
+                case 'loadMore':
+                    return { ...state, page: state.page + 1 }
+
+                case 'setSeries':
+                    if (state.page > 1) {
+                        return { ...state, series: [...state.series, ...action.payload] }
+                    }
+                    return { ...state, series: action.payload }
+
+                case 'search':
+                    return { ...state, operation: 'search', query: action.payload, heading: 'SEARCH RESULTS', page: 1 }
+            }
+        }
+
+        const [state, dispatch] = useReducer(reducer, initialState)
+
+        useEffect(() => {
+            if (state.operation === 'series') {
+                fetch(`https://api.themoviedb.org/3/discover/tv?api_key=5ef2e60d6b66a89510434011a82a5020&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=${state.page}&with_genres=${state.genreSelected.map(genre => genre.id).join(',')}`)
+                    .then(response => response.json())
+                    .then(data => dispatch({ type: 'setSeries', payload: data.results }))
+            }
+
+            else if (state.operation === 'search') {
+                fetch(`https://api.themoviedb.org/3/search/multi?api_key=5ef2e60d6b66a89510434011a82a5020&language=en-US&query=${state.query}&page=${state.page}&include_adult=true`)
+                    .then(response => response.json())
+                    .then(data => dispatch({ type: 'setSeries', payload: data.results }))
+            }
+        }, [state.page, state.query, state.genres, state.genreSelected])
+
+        useEffect(() => {
+            fetch(`https://api.themoviedb.org/3/genre/tv/list?api_key=5ef2e60d6b66a89510434011a82a5020&language=en-US`)
                 .then(response => response.json())
-                .then(data => dispatch({ type: 'setSeries', payload: data.results }))
+                .then(data => dispatch({ type: 'setGenre', payload: data.genres }))
+        }, [])
+
+        function onSearch(query) {
+            dispatch({ type: 'search', payload: query })
         }
 
-        else if (state.operation === 'search') {
-            fetch(`https://api.themoviedb.org/3/search/multi?api_key=5ef2e60d6b66a89510434011a82a5020&language=en-US&query=${state.query}&page=${state.page}&include_adult=true`)
-                .then(response => response.json())
-                .then(data => dispatch({ type: 'setSeries', payload: data.results }))
-        }
-    }, [state.page, state.query])
+        return (
+            <>
+                <Header heading={state.heading} onSearch={onSearch} mode={props.mode} />
 
-    function onSearch(query) {
-        dispatch({ type: 'search', payload: query })
+                <div className='genresList snaps-inline'>
+                    {state.genreSelected.map(genre => {
+                        return <div key={genre.id} onClick={() => dispatch({ type: 'removeGenre', payload: genre })} className={`genre ${props.mode === 'dark' ? 'activeG_dm' : 'activeG_lm'}`}>{genre.name}</div>
+                    })}
+
+                    {state.genres.map(genre => {
+                        return <div key={genre.id} onClick={() => dispatch({ type: 'selectGenre', payload: genre })} className={`genre ${props.mode === 'dark' ? 'notActiveG_dm' : 'notActiveG_lm'}`}>{genre.name}</div>
+                    })}
+                </div>
+
+                <InfiniteScroll next={() => dispatch({ type: "loadMore" })} dataLength={state.series.length} hasMore={true}>
+                    <Body heading={state.heading} content={state.series} mode={props.mode} />
+                </InfiniteScroll>
+
+                <Footer active='series' mode={props.mode} />
+            </>
+        )
     }
-
-    return (
-        <>
-            <Header heading={state.heading} onSearch={onSearch} />
-
-            <InfiniteScroll next={() => dispatch({ type: "loadMore" })} dataLength={state.series.length} hasMore={true}>
-                <Body heading={state.heading} content={state.series} />
-            </InfiniteScroll>
-
-            <Footer active='series' />
-        </>
-    )
-}
 
 export default Series

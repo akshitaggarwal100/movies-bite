@@ -1,19 +1,33 @@
 .cardBox {
     width: 240px;
     border-radius: 1rem;
-    background-color: #212224;
-    color: white;
     padding: 0.8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 150ms;
+}
+
+.cardBox_dm {
+    background-color: #212224;
+    color: white;
+}
+
+.cardBox_lm {
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    background-color: #fcfcfc;
+    color: black;
+}
+
+.cardBox:hover {
+    transform: scale(1.05);
 }
 
 .cardImage {
     border-radius: 0.8rem;
     object-fit: cover;
     width: 100%;
-    height: 300px;
+    aspect-ratio: 9 / 13;
     margin-bottom: 0.8rem;
 }
 

@@ -12,12 +12,12 @@ function Header(props) {
 
     return (
         <nav className='navbar'>
-            <Logo />
+            <Logo mode={props.mode} />
             <div className='searchBox'>
                 <input type="text" placeholder='Search...' className='searchBar' ref={query} />
                 <FaSearch className='searchIcon' onClick={() => onSearch(query.current.value)} />
             </div>
-            <h1 className='heading'>{props.heading}</h1>
+            <h1 className={`heading ${props.mode === 'dark' ? 'heading_dm' : 'heading_lm'}`}>{props.heading}</h1>
         </nav>
     )
 }
